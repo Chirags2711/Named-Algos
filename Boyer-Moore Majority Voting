@@ -1,0 +1,38 @@
+// Problem Statement: Given an array of N integers.
+// Write a program to return an element that occurs more than N/2 times in the given array. 
+// You may consider that such an element always exists in the array.
+
+Initialize 2 variables:
+Count –  for tracking the count of element
+Element – for which element we are counting
+Traverse through the given array.
+If Count is 0 then store the current element of the array as Element.
+If the current element and Element are the same increase the Count by 1.
+If they are different decrease the Count by 1.
+The integer present in Element should be the result we are expecting 
+
+public static int majorityElement(int []v) {
+        //size of the given array:
+        int n = v.length;
+        int cnt = 0; // count
+        int el = 0; // Element
+
+        //applying the algorithm:
+        for (int i = 0; i < n; i++) {
+            if (cnt == 0) {
+                cnt = 1;
+                el = v[i];
+            } else if (el == v[i]) cnt++;
+            else cnt--;
+        }
+
+        //checking if the stored element
+        // is the majority element:
+        int cnt1 = 0;
+        for (int i = 0; i < n; i++) {
+            if (v[i] == el) cnt1++;
+        }
+
+        if (cnt1 > (n / 2)) return el;
+        return -1;
+    }
